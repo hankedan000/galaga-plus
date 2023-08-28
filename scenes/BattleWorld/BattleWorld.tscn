@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/BaseWorld/BaseWorld.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Ship/Ship.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/BattleWorld/BattleWorld.gd" type="Script" id=3]
+[ext_resource path="res://scenes/Enemy/Enemy.tscn" type="PackedScene" id=4]
+
+[node name="BattleWorld" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="Ship" parent="." index="1" instance=ExtResource( 2 )]
+position = Vector2( 15, 15 )
+
+[node name="Fleet" type="Node" parent="." index="2"]
+
+[node name="Enemy" parent="Fleet" index="0" instance=ExtResource( 4 )]
+position = Vector2( 128, 43 )
+
+[node name="AnimationTimer" type="Timer" parent="." index="3"]
+
+[connection signal="timeout" from="AnimationTimer" to="." method="_on_AnimationTimer_timeout"]
